@@ -3,6 +3,7 @@ import undetected_chromedriver as uc
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
 from modules.CookieManager import correct_cookie
+from modules.UploadManager import get_videos, get_video, randomly_video
 from fake_useragent import UserAgent
 
 useragent = UserAgent()
@@ -22,7 +23,8 @@ class TikTokDriver:
         for line in cookie:
             self.driver.add_cookie(correct_cookie(line))
         self.driver.get("https://www.tiktok.com/upload")
-        self.driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div/div/div[3]/div[2]/div/div/input')
+        video = randomly_video()
+        self.driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div/div/div[3]/div[2]/div/div/input').send_keys(video['vid'])
 
 
     
