@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from modules.CookieManager import correct_cookie
 from modules.UploadManager import get_videos, get_video, randomly_video
+from modules.Api import get_video_link
 from fake_useragent import UserAgent
 
 useragent = UserAgent()
@@ -46,6 +47,10 @@ def client_setup(cookie):
     time.sleep(delay_after_upload)
     driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div/div[3]/div[3]/div[8]/button[2]').click()
     time.sleep(delay_before_upload)
+    driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div[1]/div[3]').click()
+    time.sleep(1)
+    url = driver.current_url
+    get_video_link(url)
     driver.quit()
     driver.close()
     
