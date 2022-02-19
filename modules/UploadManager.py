@@ -16,8 +16,8 @@ def get_video(video):
         onlyfiles = [f for f in listdir(f"./upload/{video}") if isfile(join(f"./upload/{video}", f))]
         if 'caption.txt' in onlyfiles and 'tags.txt' in onlyfiles and 'video.mp4' in onlyfiles:
             response.append({
-                'cap': open(f"./upload/{video}/caption.txt").read(),
-                'tag': open(f"./upload/{video}/tags.txt").read(),
+                'cap': open(f"./upload/{video}/caption.txt", encoding='utf-8').read(),
+                'tag': open(f"./upload/{video}/tags.txt", encoding='utf-8').read(),
                 'vid': os.path.abspath(f"./upload/{video}/video.mp4")
             })
             print(f"{video} - GOOD.")
