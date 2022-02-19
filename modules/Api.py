@@ -35,7 +35,3 @@ def get_video_link(url):
     when = datetime.utcfromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
     url = "https://www.tiktok.com/@{}/video/{}".format(user_id, id)
     print(f"[LOG] {when} {url}")
-
-regex = r"@(\S+)\?"
-result = re.findall(regex, "https://www.tiktok.com/@zubarefff?lang=en")
-print(result[0])

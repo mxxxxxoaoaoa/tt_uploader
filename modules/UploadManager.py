@@ -27,6 +27,7 @@ def get_video(video):
             shutil.rmtree(f'./upload/{video}')
     except: os.remove(f"./upload/{video}")
 
+
 def randomly_video():
     dirs = listdir("./upload")
     return get_video(random.choice(dirs))

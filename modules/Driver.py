@@ -15,7 +15,7 @@ from fake_useragent import UserAgent
 useragent = UserAgent()
 
 delay_after_upload = 7
-delay_before_upload = 10
+delay_before_upload = 5
 
 
 def client_setup(cookie):

@@ -1,4 +1,4 @@
-import json
+import json, os
 from os import listdir
 from os.path import isfile, join
 
@@ -8,9 +8,11 @@ def get_cookies():
     cookies = []
     for cookie_file in cookie_files:
         with open('./cookies/{}'.format(cookie_file), 'r', encoding="utf-8") as f:
-            cookie = json.load(f)
+            cookie = f.read()
             f.close()
-        cookies.append(cookie)
+        if len(cookie) != 0:
+            cookies.append(cookie)
+        else: os.remove('./cookies/{}'.format(cookie_file))
     return cookies
 
 
@@ -18,3 +20,5 @@ def correct_cookie(cookie):
     if cookie['sameSite'] != 'Strict':
         cookie['sameSite'] = 'Strict'
     return cookie
+
+get_cookies()
