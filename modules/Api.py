@@ -1,4 +1,4 @@
-import json
+import json, re
 from datetime import datetime
 from TikTokApi import TikTokApi
 
@@ -11,8 +11,15 @@ for line in cookie:
         api = TikTokApi(custom_verify_fp=line['value'])
         print('TT API LOADED.')
 
+def regex_link(url):
+    regex = r"@(\S+)\?"
+    result = re.findall(regex, url)
+    return result[0]
 
-def get_video_link(user_id):
+
+
+def get_video_link(url):
+    user_id = regex_link(url)
     user = api.user(username=user_id)
     user.as_dict 
 
@@ -28,3 +35,7 @@ def get_video_link(user_id):
     when = datetime.utcfromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
     url = "https://www.tiktok.com/@{}/video/{}".format(user_id, id)
     print(f"[LOG] {when} {url}")
+
+regex = r"@(\S+)\?"
+result = re.findall(regex, "https://www.tiktok.com/@zubarefff?lang=en")
+print(result[0])
